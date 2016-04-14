@@ -53,15 +53,15 @@ public class GraphController implements Initializable {
 
         Gson gson = new Gson();
         PolioDataSet ds = gson.fromJson(str, PolioDataSet.class);
-        ds.dedup();
         PolioDataPoint[] pdp = ds.getDataPoints();
         XYChart.Series<String, Number> immuneSeries = new XYChart.Series();
         immuneSeries.setName("% Immunized");
         for (PolioDataPoint dp : ds.getDataPoints()) {
-            System.out.println(dp);
-            immuneSeries.getData().add(new XYChart.Data(dp.getCountry(), dp.getValue()));
+            String country = dp.getCountry();
+            if (country != null) {
+                immuneSeries.getData().add(new XYChart.Data(country, dp.getValue()));
+            }
         }
         chart.getData().add(immuneSeries);
-    }    
-    
+    }        
 }

@@ -18,13 +18,4 @@ public class PolioDataSet {
     public PolioDataPoint[] getDataPoints() {
         return fact;
     }
-
-    void dedup() {
-        TreeSet<PolioDataPoint> dpSet = new TreeSet<PolioDataPoint>();
-        for (PolioDataPoint dp : fact) {
-            dpSet.add(dp);
-        }
-        Object[] dedupedObjs = dpSet.toArray();
-        fact = Arrays.copyOf(dedupedObjs, dedupedObjs.length, PolioDataPoint[].class);
-    }
 }
